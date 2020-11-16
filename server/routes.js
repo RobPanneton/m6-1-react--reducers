@@ -20,7 +20,7 @@ for (let r = 0; r < row.length; r++) {
 // ----------------------------------
 
 router.get("/api/seat-availability", async (req, res) => {
-  await delay(Math.random() * 3000);
+  await delay(Math.random() * 1000);
 
   return res.json({
     seats: seats,
@@ -34,7 +34,7 @@ let lastBookingAttemptSucceeded = false;
 router.post("/api/book-seat", async (req, res) => {
   const { seatId, creditCard, expiration } = req.body;
 
-  await delay(Math.random() * 3000);
+  await delay(Math.random() * 1000);
 
   if (seats[seatId].isBooked) {
     return res.status(400).json({
@@ -49,15 +49,19 @@ router.post("/api/book-seat", async (req, res) => {
     });
   }
 
-  if (lastBookingAttemptSucceeded) {
-    lastBookingAttemptSucceeded = !lastBookingAttemptSucceeded;
+  // THIS IS WHAT YOU CHANGED
 
-    return res.status(500).json({
-      message: "An unknown error has occurred. Please try your request again.",
-    });
-  }
+  // if (lastBookingAttemptSucceeded) {
+  //   lastBookingAttemptSucceeded = !lastBookingAttemptSucceeded;
 
-  lastBookingAttemptSucceeded = !lastBookingAttemptSucceeded;
+  //   return res.status(500).json({
+  //     message: "An unknown error has occurred. Please try your request again.",
+  //   });
+  // }
+
+  //  lastBookingAttemptSucceeded = !lastBookingAttemptSucceeded;
+
+  // THIS IS WHAT YOU CHANGED (comment out only)
 
   seats[seatId].isBooked = true;
 
