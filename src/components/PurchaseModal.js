@@ -10,6 +10,13 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { withStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 
 const PurchasedModal = () => {
   const {
@@ -60,10 +67,25 @@ const PurchasedModal = () => {
             <DialogContentText>
               You're purchasing 1 ticket for the price of ${price}.
             </DialogContentText>
-            <DialogContentText>
+
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Row</TableCell>
+                  <TableCell>Seat</TableCell>
+                  <TableCell>Price</TableCell>
+                </TableRow>
+                <TableCell>{selectedSeatId.split("-")[0]}</TableCell>
+                <TableCell>{selectedSeatId.split("-")[1]}</TableCell>
+                <TableCell>${price}</TableCell>
+              </TableHead>
+            </Table>
+            <DialogContentText> </DialogContentText>
+            {/* <DialogContentText>
               Row: {selectedSeatId.split("-")[0]} Seat:{" "}
               {selectedSeatId.split("-")[1]} Price: {price}
-            </DialogContentText>
+            </DialogContentText> */}
+
             <DialogContentText>Enter payment details</DialogContentText>
 
             <TextField
