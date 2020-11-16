@@ -45,8 +45,18 @@ const PurchasedModal = () => {
         creditCard: creditCard,
         expiration: expiration,
       }),
-    });
-    purchaseTicketSuccess();
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === 500) {
+          purchaseTicketFailure();
+        } else if (data.status === 200) {
+          purchaseTicketSuccess();
+        } else {
+          cancelBookingProcess();
+        }
+      });
   };
 
   useEffect(() => {

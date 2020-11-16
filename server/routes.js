@@ -49,19 +49,15 @@ router.post("/api/book-seat", async (req, res) => {
     });
   }
 
-  // THIS IS WHAT YOU CHANGED
+  if (lastBookingAttemptSucceeded) {
+    lastBookingAttemptSucceeded = !lastBookingAttemptSucceeded;
 
-  // if (lastBookingAttemptSucceeded) {
-  //   lastBookingAttemptSucceeded = !lastBookingAttemptSucceeded;
+    return res.status(500).json({
+      message: "An unknown error has occurred. Please try your request again.",
+    });
+  }
 
-  //   return res.status(500).json({
-  //     message: "An unknown error has occurred. Please try your request again.",
-  //   });
-  // }
-
-  //  lastBookingAttemptSucceeded = !lastBookingAttemptSucceeded;
-
-  // THIS IS WHAT YOU CHANGED (comment out only)
+  lastBookingAttemptSucceeded = !lastBookingAttemptSucceeded;
 
   seats[seatId].isBooked = true;
 
