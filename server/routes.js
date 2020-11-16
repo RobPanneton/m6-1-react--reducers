@@ -64,7 +64,7 @@ router.post("/api/book-seat", async (req, res) => {
   // THIS IS WHAT YOU CHANGED (comment out only)
 
   seats[seatId].isBooked = true;
-
+  console.log("booked");
   return res.status(200).json({
     status: 200,
     success: true,

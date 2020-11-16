@@ -18,6 +18,26 @@ const reducer = (state, action) => {
         selectedSeatId: action.seat,
         price: action.price,
       };
+    case "purchase-ticket-request":
+      return {
+        ...state,
+        status: "awaiting-response",
+      };
+    case "purchase-ticket-success":
+      return {
+        ...initialState,
+        status: "purchased",
+      };
+    case "purchase-ticket-failure":
+      return {
+        ...state,
+        status: "error",
+        error: "Please provide credit card information!",
+      };
+    case "cancel-booking-process":
+      return {
+        ...initialState,
+      };
     default:
       throw new Error(`Unrecognized action: ${action.type}`);
   }
@@ -34,13 +54,46 @@ export const BookingProvider = ({ children }) => {
     });
   };
 
+  const cancelBookingProcess = () => {
+    dispatch({
+      type: "cancel-booking-process",
+    });
+  };
+
+  const purchaseTicketRequest = () => {
+    dispatch({
+      type: "purchase-ticket-request",
+    });
+  };
+
+  const purchaseTicketSuccess = () => {
+    dispatch({
+      type: "purchase-ticket-success",
+    });
+  };
+
+  const purchaseTicketFailure = () => {
+    dispatch({
+      type: "purchase-ticket-failure",
+    });
+  };
+
   useEffect(() => {
     console.log(state);
   });
 
   return (
     <BookingContext.Provider
-      value={{ state, actions: { beginBookingProcess } }}
+      value={{
+        state,
+        actions: {
+          beginBookingProcess,
+          cancelBookingProcess,
+          purchaseTicketRequest,
+          purchaseTicketSuccess,
+          purchaseTicketFailure,
+        },
+      }}
     >
       {children}
     </BookingContext.Provider>
