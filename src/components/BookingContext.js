@@ -78,10 +78,6 @@ export const BookingProvider = ({ children }) => {
     });
   };
 
-  useEffect(() => {
-    console.log(state);
-  });
-
   return (
     <BookingContext.Provider
       value={{

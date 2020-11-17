@@ -19,8 +19,6 @@ function App() {
       .then((data) => receiveSeatInfoFromServer(data));
   }, []);
 
-  console.log(status);
-
   return (
     <>
       <PurchaseModal />

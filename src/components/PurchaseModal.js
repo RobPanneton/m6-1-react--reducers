@@ -59,11 +59,6 @@ const PurchasedModal = () => {
       });
   };
 
-  useEffect(() => {
-    console.log(status, selectedSeatId, price);
-    console.log(creditCard, expiration);
-  });
-
   return (
     <div>
       {selectedSeatId && (
@@ -85,10 +80,14 @@ const PurchasedModal = () => {
                   <TableCell>Seat</TableCell>
                   <TableCell>Price</TableCell>
                 </TableRow>
-                <TableCell>{selectedSeatId.split("-")[0]}</TableCell>
-                <TableCell>{selectedSeatId.split("-")[1]}</TableCell>
-                <TableCell>${price}</TableCell>
               </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>{selectedSeatId.split("-")[0]}</TableCell>
+                  <TableCell>{selectedSeatId.split("-")[1]}</TableCell>
+                  <TableCell>${price}</TableCell>
+                </TableRow>
+              </TableBody>
             </Table>
             <DialogContentText> </DialogContentText>
             {/* <DialogContentText>
